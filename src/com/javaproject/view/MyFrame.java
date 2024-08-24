@@ -1,7 +1,6 @@
 package com.javaproject.view;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import com.javaproject.entity.Exercise;
@@ -28,7 +26,7 @@ public class MyFrame extends JFrame implements ActionListener{
 	
 	private static final int HEIGHT_FRAME = 500;
 	private static final int WIDTH_FRAME = 500;
-
+	private static final String FILE_PATH = "Files/output.xml";
 	
 	JButton addButton, submitButton, readButton, clearButton;
 	JTextField exerciseTextField, setsTextField, repetitionsTextField, weightTextField, dateTextField;
@@ -48,16 +46,14 @@ public class MyFrame extends JFrame implements ActionListener{
 	String errorMessage = "Not all fields are filled";
 	
 	public MyFrame() {
-		
-		textPanel = new MyPanel();
-		exercises = new ArrayList<>();
-		
-		this.setTitle("Java Project: Write to file"); //Set title
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit out of app
+		this.setTitle("Workout Log");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(WIDTH_FRAME, HEIGHT_FRAME);
 		this.setBackground(Color.green);
+		this.setResizable(false);
 		this.setLayout(null);
-		
+		this.setLocationRelativeTo(null);
+
 		//Radio Buttons
 		pushDayButton = new JRadioButton("Push");
 		pushDayButton.setBounds(25, 5, 60, 20);
@@ -138,6 +134,9 @@ public class MyFrame extends JFrame implements ActionListener{
 		dateTextField.setBounds(legDayButton.getX() + 100, pushDayButton.getY(), 85, 30);
 		dateTextField.setFont(new Font("", Font.PLAIN, 14));
 		
+		exercises = new ArrayList<>();
+		textPanel = new MyPanel();
+
 		this.add(pushDayButton);
 		this.add(pullDayButton);
 		this.add(legDayButton);
@@ -156,8 +155,6 @@ public class MyFrame extends JFrame implements ActionListener{
 		this.add(repetitionsLabel);
 		this.add(weightLabel);
 
-	
-		this.setLocationRelativeTo(null);
 		this.setVisible(true); //Make this visible
 	}
 
@@ -186,6 +183,7 @@ public class MyFrame extends JFrame implements ActionListener{
 					break;
 				}
 				
+				//Validate date
 				date = dateTextField.getText();
 			
 				if(!DateHandler.dateValidator(date)) {
@@ -193,11 +191,11 @@ public class MyFrame extends JFrame implements ActionListener{
 					break;
 				}
 				
-
+				//This workout object will be added to the XML file
 				workout = new Workout(date, radioButtonPressed, exercises);
 				
 				//Calling XMLHandler
-				File xmlFile = new File("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+				File xmlFile = new File(FILE_PATH); 
 				if(!xmlFile.exists()) {
 					XmlWriter.writeToXml(workout);
 				}
@@ -207,6 +205,7 @@ public class MyFrame extends JFrame implements ActionListener{
 				
 				radioButtonGroup.clearSelection();
 				
+				//Creating a new exercises list for new workouts
 				exercises = new ArrayList<>();
 				
 				exerciseTextField.setText("");

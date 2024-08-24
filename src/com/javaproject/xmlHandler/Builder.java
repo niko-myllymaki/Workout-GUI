@@ -11,6 +11,7 @@ import com.javaproject.entity.Workout;
 
 public class Builder {
 	
+	//Create a new document and add workout to it
 	public static Document buildDocument(Workout workoutToList) {
 		// Create a DocumentBuilder 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); 

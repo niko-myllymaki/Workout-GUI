@@ -16,10 +16,13 @@ import org.xml.sax.SAXException;
 
 public class Reader {
 	
+	private static final String FILE_PATH = "Files/output.xml";
+	
 	public static Document readXml() {
 		Document document = null;
+		//
 		try  {
-			File xmlFile = new File("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+			File xmlFile = new File(FILE_PATH); 
 			
 	        // Create a DocumentBuilder 
 	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance(); 
@@ -41,7 +44,7 @@ public class Reader {
 	public static String getTextFromDocument() {
 		String contents = "";
 		try {
-			File file = new File("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+			File file = new File(FILE_PATH); 
 			
 			if(!file.exists()) {
 				JOptionPane.showMessageDialog(null, "File Not Found", "File Not Found", JOptionPane.ERROR_MESSAGE);

@@ -12,6 +12,8 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 
 public class Clear {
+	
+	private static final String FILE_PATH = "Files/output.xml";
 
 	public static void clearXmlFile() {
 		
@@ -34,7 +36,7 @@ public class Clear {
 	        DOMSource source = new DOMSource(document); 
 	 
 	        // Specify your local file path 
-	        StreamResult result = new StreamResult("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+	        StreamResult result = new StreamResult(FILE_PATH); 
 	       
 			transformer.transform(source, result);
 	 	} catch (Exception e) {
@@ -44,7 +46,7 @@ public class Clear {
 	}
 	
 	public static void deleteFile() {
-		File fileToDelete = new File("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+		File fileToDelete = new File(FILE_PATH); 
 		fileToDelete.delete();
 
 	}

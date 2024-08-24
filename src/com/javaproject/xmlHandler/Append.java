@@ -17,6 +17,9 @@ import com.javaproject.entity.Workout;
 
 public class Append {
 	
+	private static final String FILE_PATH = "Files/output.xml";
+
+	//Write new contents to the existing document/xml-file
 	public static void appendDocuments(Workout workoutToList) {
 		Document mainDocument = Reader.readXml();
 		Document tempDocument = Builder.buildDocument(workoutToList);
@@ -58,7 +61,7 @@ public class Append {
 			
 			
 			Source source = new DOMSource(mainDocument);
-			Result output = new StreamResult("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml");
+			Result output = new StreamResult(FILE_PATH);
 			
 			
 			transformer.transform(source, output);

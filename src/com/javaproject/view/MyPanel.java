@@ -3,8 +3,6 @@ package com.javaproject.view;
 import java.awt.Color;
 
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class MyPanel extends JPanel{
 	
@@ -15,12 +13,14 @@ public class MyPanel extends JPanel{
 	
 	MyPanel() {
 	
-		textArea = new MyTextArea();
-
 		this.setBackground(Color.GRAY);
 		this.setBounds(0, 300, WIDTH_PANEL, HEIGHT_PANEL);
+		
+		textArea = new MyTextArea();
 		textArea.setBackground(getBackground().brighter());
-
+		
+		//This panel contains the text area 
+		//where workout log will be shown to the user
 		this.add(textArea);
 	}
 

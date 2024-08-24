@@ -13,9 +13,13 @@ import com.javaproject.entity.Workout;
 
 
 public class XmlWriter {
+	
+	private static final String FILE_PATH = "Files/output.xml";
 
+	//Create the actual xml-file
 	public static void writeToXml(Workout workoutToList) {
 	
+		//Contents of document object will be added to the xml-file
 		Document document = Builder.buildDocument(workoutToList);
 		
 	    TransformerFactory transformerFactory = TransformerFactory.newInstance(); 
@@ -25,7 +29,7 @@ public class XmlWriter {
 		    DOMSource source = new DOMSource(document); 
 		  
 		    // Specify your local file path 
-		    StreamResult result = new StreamResult("D:/Java_2024/RecapForJava/WriteToFileGUI/output.xml"); 
+		    StreamResult result = new StreamResult(FILE_PATH); 
 	    	transformer.transform(source, result);
 	    } catch (Exception e) {
 	    	e.printStackTrace();
